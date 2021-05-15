@@ -9,13 +9,15 @@ public class PetCenter{
 	
 	private Scanner reader;
 	private EmergencyCenter app;
+	private static int optionMenu;
 	
+	//Constructor Method
 	public PetCenter(){
 		
 		System.out.println("============================\n======== BIENVENIDO ========\n============================\n");
 		reader = new Scanner(System.in);
 		app = new EmergencyCenter();
-		
+		optionMenu = 0;
 	}
 	
 	//void main Method
@@ -23,11 +25,10 @@ public class PetCenter{
 		
 		PetCenter ppal = new PetCenter();
 		
-		int option;
 		do{
-			option = ppal.showMenu();
+			optionMenu = ppal.showMenu();
 			
-			switch(option){
+			switch(optionMenu){
 				case 1:
 				ppal.addNewVet();
 				break;
@@ -44,25 +45,26 @@ public class PetCenter{
 				ppal.startVeterinaryConsult();
 				break;
 				case 6:
-				ppal.showVets();
+				ppal.finishConsult();
 				break;
 				case 7:
-				ppal.showPets();
+				ppal.showUnattendedPet();
 				break;
 				case 8:
-				ppal.showOrderPets();
+				ppal.closeCenter();
 				break;
 				default:
-				option = 0;
+				optionMenu = 0;
 				break;
 			}
 			
-		}while(option != 0);
+		}while(optionMenu != 0);
 		
 		
 		
 	}
 	
+	//Methods
 	public int showMenu(){
 		int option;
 		
@@ -72,6 +74,9 @@ public class PetCenter{
 		System.out.println("(3) Para registrar una mascota");
 		System.out.println("(4) Para retirar una mascota");
 		System.out.println("(5) Para iniciar una consulta");
+		System.out.println("(6) Para finalizar una consulta");
+		System.out.println("(7) Para mostrar las mascotas que aun no han sido atendidas");
+		System.out.println("(8) Para cerrar el centro de urgencias");
 		System.out.println("\n( ) Cualquier otro numero para salir\n");
 		
 		System.out.print("Opcion: ");
@@ -287,7 +292,6 @@ public class PetCenter{
 	}
 	
 	public void startVeterinaryConsult(){
-		app.find_The_Next_Pet_To_Attend();
 		
 		System.out.println(app.showVets());
 		if((app.showVets()).equals("No hay veterinarios registrados")){
@@ -304,11 +308,82 @@ public class PetCenter{
 				System.out.println(app.startConsult(indexToStartConsult));
 			} else{System.out.println("No existe ningun veterinario con esa identificacion");}
 			
-			System.out.println("===================================");
+			System.out.println("===============================================================");
 		}
 		
 	}
 	
+	public void finishConsult(){
+		String idNumber, namePet;
+		int indexVet, option = 0;
+		
+		System.out.println(app.showVets());
+		if((app.showVets()).equals("No hay veterinarios registrados")){
+			System.out.println();
+		} else{
+			System.out.println("Por favor ingrese el numero de identificacion del veterinario que desea finalizar su consulta:\n");
+			System.out.print("CC: ");
+			idNumber = reader.nextLine();
+			System.out.print("Nombre de la mascota quien esta atendiendo: ");
+			namePet = reader.nextLine();
+			
+			indexVet = app.findVet(idNumber);
+			
+			if(indexVet != -1){
+				do{
+					System.out.println("Escoja la opcion que desea:");
+					System.out.println("(1) Para autorizar la salida");
+					System.out.println("(2) Para pasar la mascota a hospitalizacion");
+					System.out.print("Opcion: ");
+					option = reader.nextInt();
+					reader.nextLine();
+					
+					switch(option){
+						case 1:
+						option = 1;
+						break;
+						case 2:
+						option = 2;
+						break;
+						default:
+						option = 0;
+						break;
+					}
+					
+				}while(option == 0);
+				
+				System.out.println(app.finishConsult(indexVet, namePet, option));
+				
+			} else{System.out.println("No existe ningun veterinario con esa identificacion");}
+				System.out.println("===================================");
+		}
+		
+	}
+	
+	public void showUnattendedPet(){
+		System.out.println("=================================");
+		System.out.println("========  Unattends Pets ========");
+		System.out.println("=================================\n");
+		System.out.println(app.showUnattendedPets());
+	}
+	
+	public void closeCenter(){
+		if((app.closeCenter()).equals("=======================================\nAun hay mascotas pendientes por atender\n=======================================\n")){
+			System.out.println(app.closeCenter());
+		} else if((app.closeCenter()).equals("=====================================\nNo hay mascotas registradas en el centro\n=====================================\n\n")){
+			optionMenu = 0;
+			System.out.println("Hasta otro dia :3");
+		} else{
+			System.out.println(app.closeCenter());
+			app.setPet();
+			optionMenu = 0;
+			System.out.println("Hasta otro dia :3");
+		}
+		
+	}
+	
+	/**
+	//Estos metodos se utilizan para testear
 	public void showVets(){
 		System.out.println(app.showVets());
 	}
@@ -316,9 +391,6 @@ public class PetCenter{
 	public void showPets(){
 		System.out.println(app.showPets());
 	}
-	
-	public void showOrderPets(){
-		System.out.println(app.showOrderPets());
-	}
+	*/
 	
 }

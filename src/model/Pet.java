@@ -93,9 +93,11 @@ public class Pet{
 			info = "==============\n== Pet Info ==\n==============\nSpecie: " + specie + "\nName: " + name + "\nAge of the pet: " + age + owner.toString();
 		} else{info = "==============\n== Pet Info ==\n==============\nSpecie: " + specie + "\nPet Breed: " + petBreed + "\nName: " + name + "\nAge of the pet: " + age + owner.toString();}
 		
-		info += "\n====================\nPriority: " + priority + "\nStatus: " + status + "\nOrder of arrival: " + arrivalOrder + "\n====================";
+		info += "\n==============================\nPriority: " + priority + "\nStatus: " + status + "\nOrder of arrival: " + arrivalOrder;
 		
-		return info;
+		if(vetWhoAttendsPet != null){info += "\nVet who attend the Pet: " + vetWhoAttendsPet.getName() + " " + vetWhoAttendsPet.getLastName();}
+		
+		return info + "\n==============================\n";
 	}
 		
 }
