@@ -23,8 +23,8 @@ public class EmergencyCenter{
 		pets = null;
 	}
 	
-	//All Methods
 	
+	//All Methods
 	public String addVet(String idNumber, String name, String lastName, String uVR){
 		
 		String confirmation = "";
