@@ -247,16 +247,13 @@ public class EmergencyCenter{
 				}
 			
 			
-				if(i1 != -1){pets[i1].setvetWhoAttendsPet(vets[index]); pets[i1].setStatus(ConsultationStatus.IN_CONSULTATION);}
-				else if(i2 != -1){pets[i2].setvetWhoAttendsPet(vets[index]); pets[i2].setStatus(ConsultationStatus.IN_CONSULTATION);}
-				else if(i3 != -1){pets[i3].setvetWhoAttendsPet(vets[index]); pets[i3].setStatus(ConsultationStatus.IN_CONSULTATION);}
-				else if(i4 != -1){pets[i4].setvetWhoAttendsPet(vets[index]); pets[i4].setStatus(ConsultationStatus.IN_CONSULTATION);}
-				else if(i5 != -1){pets[i5].setvetWhoAttendsPet(vets[index]); pets[i5].setStatus(ConsultationStatus.IN_CONSULTATION);}
-				else{confirmation += "Ha ocurrido un error";}
+				if(i1 != -1){pets[i1].setvetWhoAttendsPet(vets[index]); pets[i1].setStatus(ConsultationStatus.IN_CONSULTATION); vets[index].setStatus("In consultation"); vets[index].increaseNumbVeterinaryConsultation(1); confirmation = "Desde este momento, el veterinario " + vets[index].getName() + " " + vets[index].getLastName() + " pasa a consulta veterinaria";}
+				else if(i2 != -1){pets[i2].setvetWhoAttendsPet(vets[index]); pets[i2].setStatus(ConsultationStatus.IN_CONSULTATION); vets[index].setStatus("In consultation"); vets[index].increaseNumbVeterinaryConsultation(1); confirmation = "Desde este momento, el veterinario " + vets[index].getName() + " " + vets[index].getLastName() + " pasa a consulta veterinaria";}
+				else if(i3 != -1){pets[i3].setvetWhoAttendsPet(vets[index]); pets[i3].setStatus(ConsultationStatus.IN_CONSULTATION); vets[index].setStatus("In consultation"); vets[index].increaseNumbVeterinaryConsultation(1); confirmation = "Desde este momento, el veterinario " + vets[index].getName() + " " + vets[index].getLastName() + " pasa a consulta veterinaria";}
+				else if(i4 != -1){pets[i4].setvetWhoAttendsPet(vets[index]); pets[i4].setStatus(ConsultationStatus.IN_CONSULTATION); vets[index].setStatus("In consultation"); vets[index].increaseNumbVeterinaryConsultation(1); confirmation = "Desde este momento, el veterinario " + vets[index].getName() + " " + vets[index].getLastName() + " pasa a consulta veterinaria";}
+				else if(i5 != -1){pets[i5].setvetWhoAttendsPet(vets[index]); pets[i5].setStatus(ConsultationStatus.IN_CONSULTATION); vets[index].setStatus("In consultation"); vets[index].increaseNumbVeterinaryConsultation(1); confirmation = "Desde este momento, el veterinario " + vets[index].getName() + " " + vets[index].getLastName() + " pasa a consulta veterinaria";}
+				else{confirmation += "No hay mascotar pendientes por atender";}
 			
-				vets[index].setStatus("In consultation");
-				vets[index].increaseNumbVeterinaryConsultation(1);
-				confirmation = "Desde este momento, el veterinario " + vets[index].getName() + " " + vets[index].getLastName() + " pasa a consulta veterinaria";
 			} else{confirmation = "Lo sentimos, el veterinario seleccionado ya esta en consulta actualmente";}
 		} else{confirmation = "No hay mascotas registradas en el centro";}
 				
@@ -405,7 +402,7 @@ public class EmergencyCenter{
 		
 	}
 
-	/**
+	
 	//Este se debera borrar mas adelante
 	public String showPets(){
 		String text = "";
@@ -423,5 +420,5 @@ public class EmergencyCenter{
 		
 		return text;
 	}
-	**/
+	
 }

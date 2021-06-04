@@ -5,12 +5,30 @@ import model.EmergencyCenter;
 import model.PetsAvailable;
 import model.Priority;
 
+/**
+* @author Juan Camilo Ramirez Tabares
+* Description: This is the main class of my project
+*/
 public class PetCenter{
 	
+	/**
+	* Description: An object of type Scanner called reader is defined
+	*/
 	private Scanner reader;
+	/**
+	* Description: An object of type EmergencyCenter (main class of model) called app is defined
+	*/
 	private EmergencyCenter app;
+	/**
+	* Description: An static object of type int called optionMenu is defined
+	*/
 	private static int optionMenu;
 	
+	/**
+	* Description: Constructor: this method prints a welcome message, creates an instance of type Scanner and an instance of type EmergencyCenter and initializes the variable optionM
+	* pre: the instances: app.EmergencyCenter, reader.Scanner, and optionM.int must have been previously created
+	* pos: the instances: app.EmergencyCenter, reader.Scanner, and optionM.int will be initialized
+	*/
 	//Constructor Method
 	public PetCenter(){
 		
@@ -53,6 +71,9 @@ public class PetCenter{
 				case 8:
 				ppal.closeCenter();
 				break;
+				case 9:
+				ppal.showPets();
+				break;
 				default:
 				optionMenu = 0;
 				break;
@@ -65,6 +86,10 @@ public class PetCenter{
 	}
 	
 	//Methods
+	/**
+	* Description: This method prints a menu, then request a value equivalent to an option and return it
+	* @return option.int Returns an integer that will be the equivalent of selecting a function from the menu, which will be used to identify what course a do while will take in the main method
+	*/
 	public int showMenu(){
 		int option;
 		
@@ -86,6 +111,11 @@ public class PetCenter{
 		return option;
 	}
 	
+	/**
+	* Description: This method requests information that will be used for the registration of a new vet in the center
+	* pre: The instance with EmergencyCenter must have been previously created and initialized
+	* pos: Create a new vet (object) in an array (vets) located in the EmergencyCenter.model class
+	*/
 	public void addNewVet(){
 		String idNumber = "", name = "", lastName = "", uVR = "";
 		
@@ -103,6 +133,11 @@ public class PetCenter{
 		
 	}
 	
+	/**
+	* Description: This method requests information that will be used to search for a vet in the center and if found, then eliminate it.
+	* pre: The instance with EmergencyCenter must have been previously created and initialized
+	* pos: Delete a vet (object) in an array (vets) located in the EmergencyCenter.model class
+	*/
 	public void deleteVet(){
 		String idNumber = "";
 		int indexToDelete = 0;
@@ -121,6 +156,11 @@ public class PetCenter{
 		
 	}
 	
+	/**
+	* Description: This method requests information that will be used for the registration of a new Pet in the center
+	* pre: The instance with EmergencyCenter must have been previously created and initialized
+	* pos: Create a new Pet (object) in an array (pets) located in the EmergencyCenter.model class
+	*/
 	public void addNewPet(){
 
 		PetsAvailable specie = null;
@@ -236,6 +276,11 @@ public class PetCenter{
 		
 	}
 	
+	/**
+	* Description: This method requests information that will be used for remove a Pet in the center
+	* pre: The instance with EmergencyCenter must have been previously created and initialized
+	* pos: Remove a Pet (object) in an array (pets) located in the EmergencyCenter.model class
+	*/
 	public void removalPet(){
 		PetsAvailable specie = null;
 		String petBreed, name, idOwner;
@@ -291,6 +336,11 @@ public class PetCenter{
 		System.out.println(app.removalPet(indexToRemoval));
 	}
 	
+	/**
+	* Description: This method requests information that will be used to find a vet(object) in an array (vets) located in the EmergencyCenter.model class; after that, this vet will attend the pet that has the WAITING_TO_BE_SERVED.enum attribute and that has the highest priority level
+	* pre: The instance with EmergencyCenter must have been previously created and initialized
+	* pos: The selected vet will attend a pet, after that the status.String attribute will be set to "In consultation" and the vet will be associated with the pet
+	*/
 	public void startVeterinaryConsult(){
 		
 		System.out.println(app.showVets());
@@ -313,6 +363,11 @@ public class PetCenter{
 		
 	}
 	
+	/**
+	* Description: This method requests information that will be used to find a vet(object) in an array (vets) located in the EmergencyCenter.model class; after that the method confirms if the vet is attending the pet and if true the TRANSFER_TO_HOSPITALIZATION.enum or AUTORIZED_DEPARTURE.enum attribute of the pet will be set. Also the vet will be set to "Available". String attribute
+	* pre: The instance with EmergencyCenter must have been previously created and initialized
+	* pos: The selected vet will be finish the consult, after that the status.String attribute will be set to "Available" and the pet will be set TRANSFER_TO_HOSPITALIZATION.enum or AUTORIZED_DEPARTURE.enum attribute
+	*/
 	public void finishConsult(){
 		String idNumber, namePet;
 		int indexVet, option = 0;
@@ -360,6 +415,11 @@ public class PetCenter{
 		
 	}
 	
+	/**
+	* Description: This method finds all the pets with WAITING_TO_BE_SERVED.ConsultationStatus<enum> in the EmergencyCenter.model class; after that print those pets
+	* pre: The instance with EmergencyCenter must have been previously created and initialized
+	* pos: Print all pets that have not been attend
+	*/
 	public void showUnattendedPet(){
 		System.out.println("=================================");
 		System.out.println("========  Unattends Pets ========");
@@ -367,6 +427,11 @@ public class PetCenter{
 		System.out.println(app.showUnattendedPets());
 	}
 	
+	/**
+	* Description: This method just call a method called closeCenter ():String in the EmergencyCenter.model class. This is in charge of evaluating when the center can be closed and when not. After that return a confirmation
+	* pre: The instance with EmergencyCenter must have been previously created and initialized
+	* pos: Print a report with the veterinarian with the most consultations made, the number of pets attended by priority and the percentage of pets that left without being attended or if the center cannot be closed, it informs us
+	*/
 	public void closeCenter(){
 		if((app.closeCenter()).equals("=======================================\nAun hay mascotas pendientes por atender\n=======================================\n")){
 			System.out.println(app.closeCenter());
@@ -387,10 +452,10 @@ public class PetCenter{
 	public void showVets(){
 		System.out.println(app.showVets());
 	}
-	
+	*/
 	public void showPets(){
 		System.out.println(app.showPets());
 	}
-	*/
+	
 	
 }
