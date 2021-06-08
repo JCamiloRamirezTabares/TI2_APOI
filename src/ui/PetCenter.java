@@ -544,7 +544,7 @@ public class PetCenter{
 				showInfoHabitat();
 				break;
 				case 5:
-				
+				showStats();
 				break;
 				default:
 				option = 0;
@@ -810,6 +810,10 @@ public class PetCenter{
 		
 		System.out.println(app2.infoHabitat(idHabitat));
 		
+	}
+	
+	public void showStats(){
+		System.out.println(app2.stats());
 	}
 	
 	
