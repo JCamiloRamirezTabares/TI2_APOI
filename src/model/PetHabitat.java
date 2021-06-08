@@ -19,6 +19,10 @@ public class PetHabitat{
 		useType = state;
 	}
 	
+	public UseState getUseType(){
+		return useType;
+	}
+	
 	public void setPetInsideTheHabitat(Pet aPet){
 		petInsideTheHabitat = aPet;
 	}

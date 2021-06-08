@@ -535,10 +535,10 @@ public class PetCenter{
 				addPetInPetDaycare();
 				break;
 				case 2:
-				
+				findPetInPetDaycare();
 				break;
 				case 3:
-				
+				showPetDaycareMap();
 				break;
 				case 4:
 				
@@ -644,7 +644,7 @@ public class PetCenter{
 				
 				Pet newDog = new Pet(dog, petBreed, namePet, agePet, idOwner, nameOwner, phone, address, days);
 				
-				transferToPetDaycare(newDog);
+				System.out.println(app2.addPet(option, newDog));
 				
 			} else{System.out.println("No hay habitats disponibles para perros");}
 			break;
@@ -677,7 +677,7 @@ public class PetCenter{
 				
 				Pet newCat = new Pet(cat, petBreed, namePet, agePet, idOwner, nameOwner, phone, address, days);
 				
-				transferToPetDaycare(newCat);
+				System.out.println(app2.addPet(option, newCat));
 				
 			} else{System.out.println("No hay habitats disponibles para gatos");}
 			break;
@@ -708,7 +708,7 @@ public class PetCenter{
 				
 				Pet newRabbit = new Pet(rabbit, namePet, agePet, idOwner, nameOwner, phone, address, days);
 				
-				transferToPetDaycare(newRabbit);
+				System.out.println(app2.addPet(option, newRabbit));
 				
 			} else{System.out.println("No hay habitats disponibles para conejos");}
 			break;
@@ -739,7 +739,7 @@ public class PetCenter{
 				
 				Pet newReptile = new Pet(reptile, namePet, agePet, idOwner, nameOwner, phone, address, days);
 				
-				transferToPetDaycare(newReptile);
+				System.out.println(app2.addPet(option, newReptile));
 				
 			} else{System.out.println("No hay habitats disponibles para reptiles");}
 			break;
@@ -770,7 +770,7 @@ public class PetCenter{
 				
 				Pet newBird = new Pet(bird, namePet, agePet, idOwner, nameOwner, phone, address, days);
 				
-				transferToPetDaycare(newBird);
+				System.out.println(app2.addPet(option, newBird));
 				
 			} else{System.out.println("No hay habitats disponibles para aves");}
 			break;
@@ -786,7 +786,20 @@ public class PetCenter{
 		
 	}
 	
-
+	public void findPetInPetDaycare(){
+		System.out.println("Porfavor ingrese el nombre de la mascota que desea buscar:");
+		System.out.print("Nombre: ");
+		String namePet = reader.nextLine();
+		
+		System.out.println(app2.findPet(namePet));
+		
+	}
+	
+	public void showPetDaycareMap(){
+		
+		System.out.println(app2.Map());
+	}
+	
 	
 	
 	//Test Methods

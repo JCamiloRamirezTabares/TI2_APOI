@@ -253,8 +253,189 @@ public class PetDaycare{
 		return confirmation;
 	}
 	
+	//For addPet
+	public String addPet(int option, Pet newPet){
+		String confirmation = "";
+		boolean sentinel = false;
+		boolean sentinel2 = false;
+		
+		if(option == 1){
+			for(int i = ROWMINIMUM_FORDOG; (i <= ROWLIMIT_FORDOG) && !sentinel; i++){
+				for(int j = COLUMNMINIMUM_FORDOG; (j <= COLUMNLIMIT_FORDOG) && !sentinel2; j++){
+					if(habitats[i][j].getPetInsideTheHabitat() == null){
+						sentinel = true;
+						sentinel2 = true;
+						habitats[i][j].setPetInsideTheHabitat(newPet);
+						habitats[i][j].setUseType(UseState.OCCUPIED_HEALTHY);
+						confirmation = "Se ha trasladado la mascota al habitat " + habitats[i][j].getIdNumber() + ", ubicado en la guarderia de mascotas";
+					}
+				}
+			}
+		} else if(option == 2){
+			for(int i = ROWMINIMUM_FORCAT; (i <= ROWLIMIT_FORCAT) && !sentinel; i++){
+				for(int j = COLUMNMINIMUM_FORCAT; (j <= COLUMNLIMIT_FORCAT) && !sentinel2; j++){
+					if(habitats[i][j].getPetInsideTheHabitat() == null){
+						sentinel = true;
+						sentinel2 = true;
+						habitats[i][j].setPetInsideTheHabitat(newPet);
+						habitats[i][j].setUseType(UseState.OCCUPIED_HEALTHY);
+						confirmation = "Se ha trasladado la mascota al habitat " + habitats[i][j].getIdNumber() + ", ubicado en la guarderia de mascotas";
+					}
+				}
+			}
+		} else if(option == 3){
+			for(int i = ROWMINIMUM_FORRABBIT; (i <= ROWLIMIT_FORRABBIT) && !sentinel; i++){
+				for(int j = COLUMNMINIMUM_FORRABBIT; (j <= COLUMNLIMIT_FORRABBIT) && !sentinel2; j++){
+					if(habitats[i][j].getPetInsideTheHabitat() == null){
+						sentinel = true;
+						sentinel2 = true;
+						habitats[i][j].setPetInsideTheHabitat(newPet);
+						habitats[i][j].setUseType(UseState.OCCUPIED_HEALTHY);
+						confirmation = "Se ha trasladado la mascota al habitat " + habitats[i][j].getIdNumber() + ", ubicado en la guarderia de mascotas";
+					}
+				}
+			}
+		} else if(option == 4){
+			for(int i = ROWMINIMUM_FORREPTILE; (i <= ROWLIMIT_FORREPTILE) && !sentinel; i++){
+				for(int j = COLUMNMINIMUM_FORREPTILE; (j <= COLUMNLIMIT_FORREPTILE) && !sentinel2; j++){
+					if(habitats[i][j].getPetInsideTheHabitat() == null){
+						sentinel = true;
+						sentinel2 = true;
+						habitats[i][j].setPetInsideTheHabitat(newPet);
+						habitats[i][j].setUseType(UseState.OCCUPIED_HEALTHY);
+						confirmation = "Se ha trasladado la mascota al habitat " + habitats[i][j].getIdNumber() + ", ubicado en la guarderia de mascotas";
+					}
+				}
+			}
+		} else if(option == 5){
+			for(int i = ROWMINIMUM_FORBIRD; (i <= ROWLIMIT_FORBIRD) && !sentinel; i++){
+				for(int j = COLUMNMINIMUM_FORBIRD; (j <= COLUMNLIMIT_FORBIRD) && !sentinel2; j++){
+					if(habitats[i][j].getPetInsideTheHabitat() == null){
+						sentinel = true;
+						sentinel2 = true;
+						habitats[i][j].setPetInsideTheHabitat(newPet);
+						habitats[i][j].setUseType(UseState.OCCUPIED_HEALTHY);
+						confirmation = "Se ha trasladado la mascota al habitat " + habitats[i][j].getIdNumber() + ", ubicado en la guarderia de mascotas";
+					}
+				}
+			}
+		}
+		
+		
+		return confirmation;
+	}
 	
+	//For find a pet
+	public String findPet(String namePet){
+		
+		String confirmation = "";
+		boolean sentinel = false;
+		boolean sentinel2 = false;
+		
+		for(int i = 0; (i < ROWMATRIX) && !sentinel; i++){
+			for(int j = 0; (j < COLUMNMATRIX) && !sentinel2; j++){
+				if(habitats[i][j].getPetInsideTheHabitat() != null){
+					if((habitats[i][j].getPetInsideTheHabitat().getName()).equals(namePet)){
+						sentinel = true;
+						sentinel2 = true;
+						confirmation += "\nLa mascota " + namePet + " se encuentra en el habitat " + habitats[i][j].getIdNumber() + "\nSu estado actual es "; 
+						
+						if(habitats[i][j].getUseType() == UseState.OCCUPIED_SICK){
+							confirmation += "enferma\n===================================================";
+						} else{
+							confirmation += "sana\n===================================================";
+						}
+					}
+				} else{confirmation = "El nombre ingresado no corresponde a ninguna mascota\n===================================================";}
+			}
+		}
+		
+		return confirmation;
+	}
 	
+	//For print PetDaycare Map
+	public String Map(){
+		
+		String confirmation = "\n==================================\n====      PETDAYCARE MAP      ====\n==================================\n| ";
+		int maxCount = 0;
+		int countC = 1, countD = 1, countR = 1, countL = 1, countB = 1;
+		
+		
+		for(int i = 0; i < ROWMATRIX; i++){
+			for(int j = 0; j < COLUMNMATRIX; j++){
+				if(habitats[i][j] instanceof CatHabitat){
+					confirmation += "G"+countC;
+					
+					if(habitats[i][j].getUseType() == UseState.EMPTY_EMPTY){
+					confirmation += "V";
+					} else if(habitats[i][j].getUseType() == UseState.OCCUPIED_HEALTHY){
+						confirmation += "S";
+					} else if(habitats[i][j].getUseType() == UseState.OCCUPIED_SICK){
+						confirmation += "E";
+					}
+					countC++;
+					confirmation += " | ";
+				} else if(habitats[i][j] instanceof DogHabitat){
+					confirmation += "P"+countD;
+					
+					if(habitats[i][j].getUseType() == UseState.EMPTY_EMPTY){
+					confirmation += "V";
+					} else if(habitats[i][j].getUseType() == UseState.OCCUPIED_HEALTHY){
+						confirmation += "S";
+					} else if(habitats[i][j].getUseType() == UseState.OCCUPIED_SICK){
+						confirmation += "E";
+					}
+					countD++;
+					confirmation += " | ";
+				} else if(habitats[i][j] instanceof RabbitHabitat){
+					confirmation += "C"+countR;
+					
+					if(habitats[i][j].getUseType() == UseState.EMPTY_EMPTY){
+					confirmation += "V";
+					} else if(habitats[i][j].getUseType() == UseState.OCCUPIED_HEALTHY){
+						confirmation += "S";
+					} else if(habitats[i][j].getUseType() == UseState.OCCUPIED_SICK){
+						confirmation += "E";
+					}
+					countR++;
+					confirmation += " | ";
+				} else if(habitats[i][j] instanceof ReptileHabitat){
+					confirmation += "R"+countL;
+					
+					if(habitats[i][j].getUseType() == UseState.EMPTY_EMPTY){
+					confirmation += "V";
+					} else if(habitats[i][j].getUseType() == UseState.OCCUPIED_HEALTHY){
+						confirmation += "S";
+					} else if(habitats[i][j].getUseType() == UseState.OCCUPIED_SICK){
+						confirmation += "E";
+					}
+					countL++;
+					confirmation += " | ";
+				} else if(habitats[i][j] instanceof BirdHabitat){
+					confirmation += "A"+countB;
+					
+					if(habitats[i][j].getUseType() == UseState.EMPTY_EMPTY){
+					confirmation += "V";
+					} else if(habitats[i][j].getUseType() == UseState.OCCUPIED_HEALTHY){
+						confirmation += "S";
+					} else if(habitats[i][j].getUseType() == UseState.OCCUPIED_SICK){
+						confirmation += "E";
+					}
+					countB++;
+					confirmation += " | ";
+				}
+				
+				maxCount++;
+				
+				if(maxCount == 5){
+					maxCount = 0;
+					confirmation += "\n| ";
+				}
+			}
+		}
+		
+		return confirmation;
+	}
 	
 	
 	
@@ -283,5 +464,4 @@ public class PetDaycare{
 		
 		return confirmation;
 	}
-	
 }
