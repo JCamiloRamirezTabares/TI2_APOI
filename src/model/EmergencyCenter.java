@@ -260,11 +260,13 @@ public class EmergencyCenter{
 		return confirmation;
 	}
 
-	public String finishConsult(int indexVet, String namePet, int option){
+	public Pet finishConsult(int indexVet, String namePet, int option){
 		//Esta dejando pasar a hospitalizacion a las que ya estan en hospitalizacion, internamente esta finalizando consulta a aquellas que ya salieron
 		int index = -1;
 		boolean sentinel = false;
-		String confirmation = "";
+		int a = 0;
+		
+		Pet petreturn = null;
 		
 		for(int i = 0; i < MAXPETS && !sentinel; i++){
 			if(pets[i] != null){
@@ -275,15 +277,25 @@ public class EmergencyCenter{
 						if(option == 1){
 							pets[index].setStatus(ConsultationStatus.AUTORIZED_DEPARTURE);
 							vets[indexVet].setStatus("Available");
-							confirmation = "Has autorizado la salida de la mascota";
-						} else{pets[index].setStatus(ConsultationStatus.TRANSFER_TO_HOSPITALIZATION); confirmation = "La mascota ha sido trasladada a hospitalizacion";}
+							a = 1;
+						} else{
+							pets[index].setStatus(ConsultationStatus.TRANSFER_TO_HOSPITALIZATION);
+							petreturn = pets[index];
+						}
 						
-					} else{confirmation = "El veterinario selecionado no esta atendiendo a esa mascota";}
+					} else{a = 3;}
 				}
 			}
 		}
 		
-		return confirmation;
+		if(sentinel == false){a = 4;}
+		
+		if(a != 0){
+			petreturn = new Pet(a);
+		}
+		
+		
+		return petreturn;
 	}
 
 	public String showUnattendedPets(){
@@ -322,7 +334,7 @@ public class EmergencyCenter{
 		
 		if(countPet != 0){confirmation = "=======================================\nAun hay mascotas pendientes por atender\n=======================================\n";
 		} else if (countN == MAXPETS){
-			confirmation = "=====================================\nNo hay mascotas registradas en el centro\n=====================================\n\n";
+			confirmation = "=====================================\nNo hay mascotas registradas en el centro\nPor lo tanto no hay datos que comparar\n=====================================\n";
 		}else{
 			confirmation = "=======================================\n==  INFORME DE ESTADISTICAS FINALES  ==\n=======================================\n";
 			for(int i = 1; i < MAXVETS; i++){

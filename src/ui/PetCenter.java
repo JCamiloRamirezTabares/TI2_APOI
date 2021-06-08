@@ -2,8 +2,12 @@ package ui;
 
 import java.util.Scanner;
 import model.EmergencyCenter;
+import model.PetDaycare;
 import model.PetsAvailable;
 import model.Priority;
+import model.Pet;
+
+
 
 /**
 * @author Juan Camilo Ramirez Tabares
@@ -19,10 +23,14 @@ public class PetCenter{
 	* Description: An object of type EmergencyCenter (main class of model) called app is defined
 	*/
 	private EmergencyCenter app;
+	
+	private PetDaycare app2;
 	/**
-	* Description: An static object of type int called optionMenu is defined
+	* Description: An static object of type int called optionMenuEmergency is defined
 	*/
-	private static int optionMenu;
+	private static int optionMenuEmergency;
+	
+	private static int optionMenuCenter;
 	
 	/**
 	* Description: Constructor: this method prints a welcome message, creates an instance of type Scanner and an instance of type EmergencyCenter and initializes the variable optionM
@@ -31,11 +39,11 @@ public class PetCenter{
 	*/
 	//Constructor Method
 	public PetCenter(){
-		
-		System.out.println("============================\n======== BIENVENIDO ========\n============================\n");
 		reader = new Scanner(System.in);
 		app = new EmergencyCenter();
-		optionMenu = 0;
+		app2 = new PetDaycare();
+		optionMenuEmergency = 0;
+		optionMenuCenter = 0;
 	}
 	
 	//void main Method
@@ -44,71 +52,110 @@ public class PetCenter{
 		PetCenter ppal = new PetCenter();
 		
 		do{
-			optionMenu = ppal.showMenu();
+			optionMenuCenter = ppal.showMenuCenter();
 			
-			switch(optionMenu){
+			switch(optionMenuCenter){
 				case 1:
-				ppal.addNewVet();
+				ppal.showMenuEmergency();
 				break;
 				case 2:
-				ppal.deleteVet();
-				break;
-				case 3:
-				ppal.addNewPet();
-				break;
-				case 4:
-				ppal.removalPet();
-				break;
-				case 5:
-				ppal.startVeterinaryConsult();
-				break;
-				case 6:
-				ppal.finishConsult();
-				break;
-				case 7:
-				ppal.showUnattendedPet();
-				break;
-				case 8:
-				ppal.closeCenter();
-				break;
-				case 9:
-				ppal.showPets();
+				ppal.showPetDaycareMenu();
 				break;
 				default:
-				optionMenu = 0;
+				optionMenuCenter = 0;
+				System.out.println("Bye");
 				break;
 			}
 			
-		}while(optionMenu != 0);
-		
-		
+			
+		}while(optionMenuCenter != 0);
 		
 	}
 	
 	//Methods
-	/**
-	* Description: This method prints a menu, then request a value equivalent to an option and return it
-	* @return option.int Returns an integer that will be the equivalent of selecting a function from the menu, which will be used to identify what course a do while will take in the main method
-	*/
-	public int showMenu(){
+	
+	public int showMenuCenter(){
 		int option;
 		
-		System.out.println("Por favor escoge la opcion que se ajusta a tu requerimiento:");
-		System.out.println("(1) Para añadir un nuevo veterinario");
-		System.out.println("(2) Para eliminar un veterinario");
-		System.out.println("(3) Para registrar una mascota");
-		System.out.println("(4) Para retirar una mascota");
-		System.out.println("(5) Para iniciar una consulta");
-		System.out.println("(6) Para finalizar una consulta");
-		System.out.println("(7) Para mostrar las mascotas que aun no han sido atendidas");
-		System.out.println("(8) Para cerrar el centro de urgencias");
-		System.out.println("\n( ) Cualquier otro numero para salir\n");
+		System.out.println("=========================================");
+		System.out.println("=============== BIENVENIDO ==============");
+		System.out.println("=== AL SISTEMA DEL CENTRO VETERINARIO ===");
+		System.out.println("=========================================\n");
 		
-		System.out.print("Opcion: ");
+		System.out.println("- Por favor escoge el servicio que deseas utilizar");
+		System.out.println("( 1 ) Emergencias Veterinarias");
+		System.out.println("( 2 ) Guarderia de Mascotas");
+		System.out.println("(   ) Otro numero para salir de la aplicacion");
+		
+		System.out.print("opcion: ");
 		option = reader.nextInt();
 		reader.nextLine();
 		
 		return option;
+		
+	}
+	
+	/**
+	* Description: This method prints a menu, then request a value equivalent to an option and return it
+	* @return option.int Returns an integer that will be the equivalent of selecting a function from the menu, which will be used to identify what course a do while will take in the main method
+	*/
+	public void showMenuEmergency(){
+		
+		System.out.println("\n============================================");
+		System.out.println("================ BIENVENIDO ================");
+		System.out.println("=== AL SISTEMA DEL CENTRO DE EMERGENCIAS ===");
+		System.out.println("============================================\n");
+		
+		do{
+			System.out.println("Por favor escoge la opcion que se ajusta a tu requerimiento:");
+			System.out.println("(1) Para añadir un nuevo veterinario");
+			System.out.println("(2) Para eliminar un veterinario");
+			System.out.println("(3) Para registrar una mascota");
+			System.out.println("(4) Para retirar una mascota");
+			System.out.println("(5) Para iniciar una consulta");
+			System.out.println("(6) Para finalizar una consulta");
+			System.out.println("(7) Para mostrar las mascotas que aun no han sido atendidas");
+			System.out.println("(8) Para cerrar el centro de urgencias");
+			System.out.println("\n( ) Cualquier otro numero para salir\n");
+		
+			System.out.print("opcion: ");
+			optionMenuEmergency = reader.nextInt();
+			reader.nextLine();
+			
+			switch(optionMenuEmergency){
+				case -1:
+				showPets();
+				break;
+				case 1:
+				addNewVet();
+				break;
+				case 2:
+				deleteVet();
+				break;
+				case 3:
+				addNewPet();
+				break;
+				case 4:
+				removalPet();
+				break;
+				case 5:
+				startVeterinaryConsult();
+				break;
+				case 6:
+				finishConsult();
+				break;
+				case 7:
+				showUnattendedPet();
+				break;
+				case 8:
+				closeCenter();
+				break;
+				default:
+				optionMenuEmergency = 0;
+				break;
+			}
+			
+		}while(optionMenuEmergency != 0);
 	}
 	
 	/**
@@ -407,10 +454,21 @@ public class PetCenter{
 					
 				}while(option == 0);
 				
-				System.out.println(app.finishConsult(indexVet, namePet, option));
+				Pet petReturn = app.finishConsult(indexVet, namePet, option);
+				
+				
+				if(petReturn.getAuxConfirmation() == 1){
+					System.out.println("Se ha autorizado la salida de la mascota");
+				} else if(petReturn.getAuxConfirmation() == 3){
+					System.out.println("El veterinario escogido no se encuentra atendiendo una mascota con esas caracteristicas");
+				} else if(petReturn.getAuxConfirmation() == 4){
+					System.out.println("Actualmente no hay mascotas registradas en el centro");
+				} else{
+					transferToPetDaycare(app.finishConsult(indexVet, namePet, option));
+				}
 				
 			} else{System.out.println("No existe ningun veterinario con esa identificacion");}
-				System.out.println("===================================");
+				System.out.println("=====================================================\n");
 		}
 		
 	}
@@ -435,18 +493,188 @@ public class PetCenter{
 	public void closeCenter(){
 		if((app.closeCenter()).equals("=======================================\nAun hay mascotas pendientes por atender\n=======================================\n")){
 			System.out.println(app.closeCenter());
-		} else if((app.closeCenter()).equals("=====================================\nNo hay mascotas registradas en el centro\n=====================================\n\n")){
-			optionMenu = 0;
-			System.out.println("Hasta otro dia :3");
+		} else if((app.closeCenter()).equals("=====================================\nNo hay mascotas registradas en el centro\nPor lo tanto no hay datos que comparar\n=====================================\n")){
+			optionMenuEmergency = 0;
+			System.out.println(app.closeCenter());
 		} else{
 			System.out.println(app.closeCenter());
 			app.setPet();
-			optionMenu = 0;
+			optionMenuEmergency = 0;
 			System.out.println("Hasta otro dia :3");
 		}
 		
 	}
 	
+	//Since there the methods of the PetDaycare class
+	
+	public void showPetDaycareMenu(){
+		System.out.println("\n============================================");
+		System.out.println("================ BIENVENIDO ================");
+		System.out.println("== AL SISTEMA DE LA GUARDERIA DE MASCOTAS ==");
+		System.out.println("============================================\n");
+		
+		int option = 0;
+		do{
+			System.out.println("Porfavor escoga la opcion de acuerdo a lo requerido\n");
+			System.out.println("( 1 ) Ingresar una mascota a la guarderia");
+			System.out.println("( 2 ) Buscar una mascota en la guarderia");
+			System.out.println("( 3 ) Mostrar mapa de la guarderia");
+			System.out.println("( 4 ) Mostrar informacion sobre un habitat");
+			System.out.println("( 5 ) Mostrar informe de la guarderia");
+			System.out.println("(   ) Cualquiera para salir\n");
+		
+			System.out.print("opcion: ");
+			option = reader.nextInt();
+			reader.nextLine();
+			
+			switch(option){
+				case -1:
+				showPetsInsideHabitats();
+				break;
+				case 1:
+				
+				break;
+				case 2:
+				
+				break;
+				case 3:
+				
+				break;
+				case 4:
+				
+				break;
+				default:
+				option = 0;
+				break;
+			}
+			
+		}while(option != 0);
+		
+		
+		
+		
+	}
+	
+	public void transferToPetDaycare(Pet petToTransfer){
+		
+		if(petToTransfer.getSpecie() == PetsAvailable.DOG){
+			if(app2.verifyIfThereRoomsForDOG() == true){
+				
+				System.out.println(app2.addDogInDaycare(petToTransfer));
+				
+			} else{System.out.println("No hay espacio para hospitalizar la mascota");}
+			
+		} else if(petToTransfer.getSpecie() == PetsAvailable.CAT){
+			if(app2.verifyIfThereRoomsForCAT() == true){
+				
+				System.out.println(app2.addCatInDaycare(petToTransfer));
+				
+			} else{System.out.println("No hay espacio para hospitalizar la mascota");}
+			
+		} else if(petToTransfer.getSpecie() == PetsAvailable.RABBIT){
+			if(app2.verifyIfThereRoomsForRABBIT() == true){
+				
+				System.out.println(app2.addRabbitInDaycare(petToTransfer));
+				
+			} else{System.out.println("No hay espacio para hospitalizar la mascota");}
+			
+		} else if(petToTransfer.getSpecie() == PetsAvailable.LIZARD){
+			if(app2.verifyIfThereRoomsForREPTILE() == true){
+				
+				System.out.println(app2.addReptileInDaycare(petToTransfer));
+				
+			} else{System.out.println("No hay espacio para hospitalizar la mascota");}
+			
+		} else if(petToTransfer.getSpecie() == PetsAvailable.BIRD){
+			if(app2.verifyIfThereRoomsForBIRD() == true){
+				
+				System.out.println(app2.addBirdInDaycare(petToTransfer));
+				
+			} else{System.out.println("No hay espacio para hospitalizar la mascota");}
+			
+		}
+		
+		
+	}
+	
+	public void addPetInPetDaycare(){
+		
+		int option = 0;
+		
+		do{
+			System.out.println("Porfavor llene el siguiente formulario de inscripcion:");
+			System.out.print("- Especie de la mascota: ");
+			System.out.println("( 1 ) PERRO");
+			System.out.println("( 2 ) GATO");
+			System.out.println("( 3 ) CONEJO");
+			System.out.println("( 4 ) REPTIL");
+			System.out.println("( 5 ) AVE");
+			
+			System.out.print("opcion: ");
+			option = reader.nextInt();
+			reader.nextLine();
+			
+			switch(option){
+			case 1:
+			if(app2.verifyIfThereRoomsForDOG() == true){
+				PetsAvailable dog = PetsAvailable.DOG;
+				System.out.print("Raza de la mascota: ");
+				String petBreed = reader.nextLine();
+				System.out.print("Nombre de la mascota: ");
+				String namePet = reader.nextLine();
+				System.out.print("Edad de la mascota: ");
+				int agePet = reader.nextInt();
+				reader.nextLine();
+				
+				System.out.println("===============================");
+				System.out.println("==== DATOS DEL RESPONSABLE ====");
+				System.out.println("===============================\n");
+				System.out.print("ID: ");
+				String idOwner = reader.nextLine();
+				System.out.print("Nombre: ");
+				String nameOwner = reader.nextLine();
+				System.out.print("Telefono: ");
+				String phone = reader.nextLine();
+				System.out.print("Direccion: ");
+				String address = reader.nextLine();
+				
+			} else{System.out.println("No hay habitats disponibles para perros");}
+			break;
+			case 2:
+			if(app2.verifyIfThereRoomsForCAT() == true){
+				
+			} else{System.out.println("No hay habitats disponibles para gatos");}
+			break;
+			case 3:
+			if(app2.verifyIfThereRoomsForRABBIT() == true){
+				
+			} else{System.out.println("No hay habitats disponibles para conejos");}
+			break;
+			case 4:
+			if(app2.verifyIfThereRoomsForREPTILE() == true){
+				
+			} else{System.out.println("No hay habitats disponibles para reptiles");}
+			break;
+			case 5:
+			if(app2.verifyIfThereRoomsForBIRD() == true){
+				
+			} else{System.out.println("No hay habitats disponibles para aves");}
+			break;
+			default:
+			option = 0;
+			break;
+		}
+			
+		}while(option == 0);
+		
+	
+		
+		
+	}
+	
+	
+	
+	//Test Methods
 	/**
 	//Estos metodos se utilizan para testear
 	public void showVets(){
@@ -455,6 +683,10 @@ public class PetCenter{
 	*/
 	public void showPets(){
 		System.out.println(app.showPets());
+	}
+	
+	public void showPetsInsideHabitats(){
+		System.out.println(app2.showPetDaycare());
 	}
 	
 	

@@ -7,6 +7,7 @@ public class Pet{
 	private int age;
 	private String symptoms;
 	private int arrivalOrder;
+	private int auxConfirmation;
 	
 	//Relationships
 	private PetsAvailable specie;
@@ -44,6 +45,11 @@ public class Pet{
 		owner = new PetOwner(idOwner, ownerName, ownerPhone, ownerAddress);
 	}
 	
+	
+	public Pet(int a){
+		auxConfirmation = a;
+	}
+	
 	//getters Methods
 	public PetsAvailable getSpecie(){
 		return specie;
@@ -75,6 +81,9 @@ public class Pet{
 	}
 	public Priority getPriority(){
 		return priority;
+	}
+	public int getAuxConfirmation(){
+		return auxConfirmation;
 	}
 	
 	//setters Methods
