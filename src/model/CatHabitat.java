@@ -26,7 +26,7 @@ public class CatHabitat extends PetHabitat{
 		
 		if(petInsideTheHabitat != null){
 			info += petInsideTheHabitat.toString();
-		}
+		} else{info += "El habitat se encuentra vacio";}
 		
 		return info;
 	}

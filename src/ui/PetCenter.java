@@ -541,6 +541,9 @@ public class PetCenter{
 				showPetDaycareMap();
 				break;
 				case 4:
+				showInfoHabitat();
+				break;
+				case 5:
 				
 				break;
 				default:
@@ -798,6 +801,15 @@ public class PetCenter{
 	public void showPetDaycareMap(){
 		
 		System.out.println(app2.Map());
+	}
+	
+	public void showInfoHabitat(){
+		System.out.println("Porfavor ingrese el identificador del habitat:");
+		System.out.print("ID: ");
+		String idHabitat = reader.nextLine();
+		
+		System.out.println(app2.infoHabitat(idHabitat));
+		
 	}
 	
 	

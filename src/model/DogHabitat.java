@@ -14,7 +14,7 @@ public class DogHabitat extends PetHabitat{
 	public String toString(){
 		String info = "=======================================\n" +
 		"=====  Information about Habitat  =====\n" +
-		"============= DOG HABITAT =============" +
+		"============= DOG HABITAT =============\n" +
 		"=======================================\n" +
 		"ID Habitat: " + idNumber + dimensions.toString() + 
 		"\nType of use: " + useType +
@@ -24,7 +24,7 @@ public class DogHabitat extends PetHabitat{
 		
 		if(petInsideTheHabitat != null){
 			info += petInsideTheHabitat.toString();
-		}
+		} else{info += "El habitat se encuentra vacio";}
 		
 		return info;
 	}

@@ -437,7 +437,25 @@ public class PetDaycare{
 		return confirmation;
 	}
 	
-	
+	//For show Info about Habitat
+	public String infoHabitat(String id){
+		String info = "";
+		boolean sentinel = false;
+		boolean sentinel2 = false;
+		
+		for(int i = 0; (i < ROWMATRIX) && !sentinel; i++){
+			for(int j = 0; (j < COLUMNMATRIX) && !sentinel2; j++){
+				if(habitats[i][j].getIdNumber().equals(id)){
+					sentinel = true;
+					sentinel2 = true;
+					info = habitats[i][j].toString();
+					
+				} else{info = "El ID ingresado no corresponde a ningun habitat\n===================================================";}
+			}
+		}
+		
+		return info;
+	}
 	
 	
 	
