@@ -8,6 +8,7 @@ public class Pet{
 	private String symptoms;
 	private int arrivalOrder;
 	private int auxConfirmation;
+	private int hospitalizationDays;
 	
 	//Relationships
 	private PetsAvailable specie;
@@ -41,6 +42,25 @@ public class Pet{
 		this.priority = priority;
 		status = ConsultationStatus.WAITING_TO_BE_SERVED;
 		this.arrivalOrder = arrivalOrder;
+		
+		owner = new PetOwner(idOwner, ownerName, ownerPhone, ownerAddress);
+	}
+	
+	public Pet(PetsAvailable specie, String petBreed, String name, int age, String idOwner, String ownerName, String ownerPhone, String ownerAddress, int days){
+		this.specie = specie;
+		this.petBreed = petBreed;
+		this.name = name;
+		this.age = age;
+		hospitalizationDays = days;
+		
+		owner = new PetOwner(idOwner, ownerName, ownerPhone, ownerAddress);
+	}
+	
+	public Pet(PetsAvailable specie, String name, int age, String idOwner, String ownerName, String ownerPhone, String ownerAddress, int days){
+		this.specie = specie;
+		this.name = name;
+		this.age = age;
+		hospitalizationDays = days;
 		
 		owner = new PetOwner(idOwner, ownerName, ownerPhone, ownerAddress);
 	}

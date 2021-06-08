@@ -532,7 +532,7 @@ public class PetCenter{
 				showPetsInsideHabitats();
 				break;
 				case 1:
-				
+				addPetInPetDaycare();
 				break;
 				case 2:
 				
@@ -603,7 +603,7 @@ public class PetCenter{
 		
 		do{
 			System.out.println("Porfavor llene el siguiente formulario de inscripcion:");
-			System.out.print("- Especie de la mascota: ");
+			System.out.println("- Especie de la mascota: ");
 			System.out.println("( 1 ) PERRO");
 			System.out.println("( 2 ) GATO");
 			System.out.println("( 3 ) CONEJO");
@@ -637,26 +637,140 @@ public class PetCenter{
 				String phone = reader.nextLine();
 				System.out.print("Direccion: ");
 				String address = reader.nextLine();
+				System.out.println("===================================");
+				System.out.print("Dias de hospitalizacion: ");
+				int days = reader.nextInt();
+				reader.nextLine();
+				
+				Pet newDog = new Pet(dog, petBreed, namePet, agePet, idOwner, nameOwner, phone, address, days);
+				
+				transferToPetDaycare(newDog);
 				
 			} else{System.out.println("No hay habitats disponibles para perros");}
 			break;
 			case 2:
 			if(app2.verifyIfThereRoomsForCAT() == true){
+				PetsAvailable cat = PetsAvailable.CAT;
+				System.out.print("Raza de la mascota: ");
+				String petBreed = reader.nextLine();
+				System.out.print("Nombre de la mascota: ");
+				String namePet = reader.nextLine();
+				System.out.print("Edad de la mascota: ");
+				int agePet = reader.nextInt();
+				reader.nextLine();
+				
+				System.out.println("===============================");
+				System.out.println("==== DATOS DEL RESPONSABLE ====");
+				System.out.println("===============================\n");
+				System.out.print("ID: ");
+				String idOwner = reader.nextLine();
+				System.out.print("Nombre: ");
+				String nameOwner = reader.nextLine();
+				System.out.print("Telefono: ");
+				String phone = reader.nextLine();
+				System.out.print("Direccion: ");
+				String address = reader.nextLine();
+				System.out.println("===================================");
+				System.out.print("Dias de hospitalizacion: ");
+				int days = reader.nextInt();
+				reader.nextLine();
+				
+				Pet newCat = new Pet(cat, petBreed, namePet, agePet, idOwner, nameOwner, phone, address, days);
+				
+				transferToPetDaycare(newCat);
 				
 			} else{System.out.println("No hay habitats disponibles para gatos");}
 			break;
 			case 3:
 			if(app2.verifyIfThereRoomsForRABBIT() == true){
+				PetsAvailable rabbit = PetsAvailable.RABBIT;
+				System.out.print("Nombre de la mascota: ");
+				String namePet = reader.nextLine();
+				System.out.print("Edad de la mascota: ");
+				int agePet = reader.nextInt();
+				reader.nextLine();
+				
+				System.out.println("===============================");
+				System.out.println("==== DATOS DEL RESPONSABLE ====");
+				System.out.println("===============================\n");
+				System.out.print("ID: ");
+				String idOwner = reader.nextLine();
+				System.out.print("Nombre: ");
+				String nameOwner = reader.nextLine();
+				System.out.print("Telefono: ");
+				String phone = reader.nextLine();
+				System.out.print("Direccion: ");
+				String address = reader.nextLine();
+				System.out.println("===================================");
+				System.out.print("Dias de hospitalizacion: ");
+				int days = reader.nextInt();
+				reader.nextLine();
+				
+				Pet newRabbit = new Pet(rabbit, namePet, agePet, idOwner, nameOwner, phone, address, days);
+				
+				transferToPetDaycare(newRabbit);
 				
 			} else{System.out.println("No hay habitats disponibles para conejos");}
 			break;
 			case 4:
 			if(app2.verifyIfThereRoomsForREPTILE() == true){
+				PetsAvailable reptile = PetsAvailable.LIZARD;
+				System.out.print("Nombre de la mascota: ");
+				String namePet = reader.nextLine();
+				System.out.print("Edad de la mascota: ");
+				int agePet = reader.nextInt();
+				reader.nextLine();
+				
+				System.out.println("===============================");
+				System.out.println("==== DATOS DEL RESPONSABLE ====");
+				System.out.println("===============================\n");
+				System.out.print("ID: ");
+				String idOwner = reader.nextLine();
+				System.out.print("Nombre: ");
+				String nameOwner = reader.nextLine();
+				System.out.print("Telefono: ");
+				String phone = reader.nextLine();
+				System.out.print("Direccion: ");
+				String address = reader.nextLine();
+				System.out.println("===================================");
+				System.out.print("Dias de hospitalizacion: ");
+				int days = reader.nextInt();
+				reader.nextLine();
+				
+				Pet newReptile = new Pet(reptile, namePet, agePet, idOwner, nameOwner, phone, address, days);
+				
+				transferToPetDaycare(newReptile);
 				
 			} else{System.out.println("No hay habitats disponibles para reptiles");}
 			break;
 			case 5:
 			if(app2.verifyIfThereRoomsForBIRD() == true){
+				PetsAvailable bird = PetsAvailable.BIRD;
+				System.out.print("Nombre de la mascota: ");
+				String namePet = reader.nextLine();
+				System.out.print("Edad de la mascota: ");
+				int agePet = reader.nextInt();
+				reader.nextLine();
+				
+				System.out.println("===============================");
+				System.out.println("==== DATOS DEL RESPONSABLE ====");
+				System.out.println("===============================\n");
+				System.out.print("ID: ");
+				String idOwner = reader.nextLine();
+				System.out.print("Nombre: ");
+				String nameOwner = reader.nextLine();
+				System.out.print("Telefono: ");
+				String phone = reader.nextLine();
+				System.out.print("Direccion: ");
+				String address = reader.nextLine();
+				System.out.println("===================================");
+				System.out.print("Dias de hospitalizacion: ");
+				int days = reader.nextInt();
+				reader.nextLine();
+				
+				Pet newBird = new Pet(bird, namePet, agePet, idOwner, nameOwner, phone, address, days);
+				
+				transferToPetDaycare(newBird);
 				
 			} else{System.out.println("No hay habitats disponibles para aves");}
 			break;
@@ -672,6 +786,7 @@ public class PetCenter{
 		
 	}
 	
+
 	
 	
 	//Test Methods

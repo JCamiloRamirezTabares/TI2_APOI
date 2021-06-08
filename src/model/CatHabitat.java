@@ -15,7 +15,7 @@ public class CatHabitat extends PetHabitat{
 	public String toString(){
 		String info = "=======================================\n" +
 		"=====  Information about Habitat  =====\n" +
-		"============= CAT HABITAT =============" +
+		"============= CAT HABITAT =============\n" +
 		"=======================================\n" +
 		"ID Habitat: " + idNumber + dimensions.toString() + 
 		"\nType of use: " + useType +
